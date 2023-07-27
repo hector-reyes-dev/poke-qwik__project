@@ -5,6 +5,7 @@ import { PokemonImage } from "../components/pokemon/pokemon-image";
 export default component$(() => {
   const pokemonId = useSignal(1); // primitivos
   const showBackImage = useSignal(false);
+  const showPokemon = useSignal(false);
 
   const changePokemonId = $((value: number) => {
     if (pokemonId.value + value <= 0) return;
@@ -19,6 +20,7 @@ export default component$(() => {
         id={pokemonId.value}
         size={200}
         isBackImage={showBackImage.value}
+        isVisible={showPokemon.value}
       />
       <div>
         <button
@@ -35,9 +37,15 @@ export default component$(() => {
         </button>
         <button
           onClick$={() => (showBackImage.value = !showBackImage.value)}
-          class="btn btn-primary"
+          class="btn btn-primary mr-2"
         >
           Turn around
+        </button>
+        <button
+          onClick$={() => (showPokemon.value = !showPokemon.value)}
+          class="btn btn-primary"
+        >
+          Unveil
         </button>
       </div>
     </>
